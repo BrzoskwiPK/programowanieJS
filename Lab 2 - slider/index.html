@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS | Slider</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="buttons_top">
+        <button class="pause">PAUSE</button>
+        <button class="resume">RESUME</button>
+      </div>
+      <div class="slider-options">
+        <label>
+          <input type="radio" name="slider-mode" value="normal" checked /> Normal Slider
+        </label>
+        <label> <input type="radio" name="slider-mode" value="fade" /> Fade Slider </label>
+      </div>
+      <div class="slider">
+        <div class="leftSwitch"></div>
+        <div class="contentHolder">
+          <div class="imageHolder">
+            <img src="assets/bmw.jpg" alt="BMW" />
+          </div>
+          <div class="imageHolder">
+            <img src="assets/lambo.jpg" alt="Lamborghini" />
+          </div>
+          <div class="imageHolder">
+            <img src="assets/mercedes.jpg" alt="Mercedes" />
+          </div>
+          <div class="imageHolder">
+            <img src="assets/maserati.jpg" alt="Maserati" />
+          </div>
+          <div class="imageHolder">
+            <img src="assets/porsche.jpg" alt="Porsche" />
+          </div>
+        </div>
+        <div class="rightSwitch"></div>
+      </div>
+      <div class="buttons_bottom"></div>
+    </div>
+    <div class="lightbox">
+      <p>TOUCH IMAGE TO EXIT PREVIEW MODE</p>
+      <img class="lightbox__image" />
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
