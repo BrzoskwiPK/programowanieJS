@@ -1,0 +1,169 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.displayNone {
+  display: none !important;
+}
+
+.flexCenterColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.flexCenterRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.track {
+  width: 100%;
+  height: 8vh;
+  margin-bottom: 15px;
+}
+
+.record__button,
+.play__button,
+.delete__button {
+  width: 60px;
+  height: 60px;
+  margin-right: 30px;
+  font-weight: bold;
+  font-size: 1.3em;
+  border-radius: 50%;
+}
+
+.record__button:hover,
+.play__button:hover,
+.delete__button:hover {
+  cursor: pointer;
+  background-color: #9d9d9d;
+  transition: background-color 0.2s linear;
+}
+
+.sound {
+  width: 15%;
+  height: 100%;
+  background-color: #89cff3;
+  color: #eee5e9;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.sound.active {
+  border: 2px solid red;
+}
+
+#drumkit__container {
+  width: 100%;
+  height: 100vh;
+}
+
+#drumkit__header {
+  width: 100%;
+  height: 15vh;
+}
+
+#drumkit__soundtracks {
+  width: 100%;
+  height: 85vh;
+}
+
+#drumkit__generator {
+  width: 50%;
+  height: 10vh;
+  margin-left: 0px;
+}
+
+#soundtracks {
+  width: 100%;
+  height: 70vh;
+}
+
+#tracksCount {
+  margin-left: 5px;
+  border: 2px solid black;
+}
+
+#generate__button,
+.add__track {
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#generate__button:hover,
+.add__track:hover {
+  cursor: pointer;
+  background-color: #207dbb;
+}
+
+.add__track {
+  align-self: flex-end;
+  margin-right: 65px;
+}
+
+.add__track:hover.disabled,
+.play__all:hover.disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.disabled {
+  background-color: gray !important;
+}
+
+.play__all {
+  align-self: flex-start;
+  margin: 20px 0 20px 85px;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+}
+
+.play__all:hover {
+  cursor: pointer;
+  background-color: #207dbb;
+}
+
+.loop__tracks {
+  margin: 20px 0 20px 20px;
+  font-weight: 600;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: red;
+  color: #fff;
+  border-radius: 8px;
+  border: 0;
+}
+
+.loop__tracks:hover {
+  cursor: pointer;
+}
+
+#drumkit__soundtracks aside {
+  width: 100%;
+}
+
+#drumkit__metronome {
+  width: 200px;
+  height: 20vh;
+  border: 3px solid black;
+  margin-left: -390px;
+  margin-right: 200px;
+}
