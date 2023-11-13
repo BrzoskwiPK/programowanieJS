@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NotePocket</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body class="flexCenterColumn">
+    <div class="search__bar">
+      <label for="search">SEARCH</label>
+      <input type="text" id="search" class="search__input" maxlength="35" />
+    </div>
+    <section class="notekeeper flexCenterColumn">
+      <form class="notekeeper__form flexCenterColumn">
+        <h4>NEW NOTE</h4>
+        <div class="form-group flexCenterColumn">
+          <label for="title">Title</label>
+          <input type="text" id="title" required />
+        </div>
+
+        <div class="form-group flexCenterColumn">
+          <label for="content">Content</label>
+          <textarea id="content" maxlength="35" required></textarea>
+        </div>
+
+        <div class="form-group flexCenterColumn">
+          <label for="color">Color</label>
+          <input type="color" id="color" value="#ffffff" />
+        </div>
+
+        <div class="form-group flexCenterRow">
+          <label for="pin">Pin note?</label>
+          <input type="checkbox" id="pin" />
+        </div>
+
+        <div class="form-group flexCenterColumn">
+          <label for="tags">Tags (comma-separated)</label>
+          <input type="text" id="tags" />
+        </div>
+
+        <div class="form-group flexCenterColumn">
+          <label for="reminder">Reminder</label>
+          <input type="datetime-local" id="reminder" />
+        </div>
+
+        <div class="form-group flexCenterColumn">
+          <label for="items">Items (comma-separated)</label>
+          <textarea id="items" maxlength="200"></textarea>
+        </div>
+
+        <button class="notekeeper__new">ADD A NOTE</button>
+      </form>
+    </section>
+    <section class="notes__container"></section>
+    <script src="notekeep.js"></script>
+  </body>
+</html>

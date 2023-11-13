@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.flexCenterRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexCenterColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notekeeper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  width: 100%;
+  height: 500px;
+}
+
+.notekeeper__form {
+  border: 2px solid black;
+  width: 300px;
+  height: 100%;
+  font-weight: bold;
+  align-items: space-between;
+  gap: 10px;
+}
+
+.notekeeper__form h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.notekeeper__form label {
+  margin-bottom: 2px;
+}
+
+.notekeeper__form textarea {
+  resize: none;
+}
+
+.notekeeper__form #pin {
+  margin-left: 5px;
+}
+
+.notekeeper__form input[type='color'] {
+  background-color: transparent;
+  border: 0;
+}
+
+.notekeeper__new {
+  width: 100px;
+  height: 30px;
+  font-weight: bold;
+  background-color: #2d55ff;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+}
+
+.notekeeper__new:hover {
+  cursor: pointer;
+  background-color: #038aff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.notes__container {
+  margin-top: 10px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.note {
+  width: 200px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.note p {
+  word-break: break-all;
+  text-align: center;
+}
+
+.search__bar {
+  margin-bottom: 20px;
+}
+
+.list {
+  margin-top: 10px;
+}
+
+.item {
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: red;
+}
+
+.item.done {
+  color: green;
+}
+
+.pinned::before {
+  content: '📌';
+  position: relative;
+  top: 0px;
+  left: -80px;
+}
