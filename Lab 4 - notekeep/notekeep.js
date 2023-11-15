@@ -31,16 +31,24 @@ const parseItems = itemsString => {
     : 'NO ITEMS'
 }
 
-const createButton = (textContent, classList, parentNode) => {
-  const button = document.createElement('button')
-  button.classList.add(classList)
-  button.textContent = textContent
-  parentNode.appendChild(button)
-}
+const createButtons = (noteElement, note) => {
+  const buttonsWrapper = document.createElement('div')
+  buttonsWrapper.classList.add('buttons-wrapper')
 
-const createButtons = noteElement => {
-  createButton('Edit', 'edit-note', noteElement)
-  createButton('Delete', 'delete-note', noteElement)
+  const editButton = document.createElement('button')
+  editButton.classList.add('edit-note')
+  editButton.textContent = 'EDIT'
+  buttonsWrapper.appendChild(editButton)
+
+  const deleteButton = document.createElement('button')
+  deleteButton.classList.add('delete-note')
+  deleteButton.textContent = 'DELETE'
+  buttonsWrapper.appendChild(deleteButton)
+
+  noteElement.appendChild(buttonsWrapper)
+
+  editButton.addEventListener('click', e => editNote(e, note))
+  deleteButton.addEventListener('click', e => deleteNote(e, note))
 }
 
 const createListIfNotEmpty = (note, noteElement) => {
@@ -61,7 +69,7 @@ const createNoteElement = (note, index) => {
         <p>${Array.isArray(note.tags) ? note.tags.join(', ') : note.tags}</p>
       `
 
-  createButtons(noteElement)
+  createButtons(noteElement, note)
   createListIfNotEmpty(note, noteElement)
 
   if (note.pin) noteElement.classList.add('pinned')
@@ -72,7 +80,9 @@ const createNoteElement = (note, index) => {
   return noteElement
 }
 
-const editNote = noteToEdit => {
+const editNote = (e, noteToEdit) => {
+  e.preventDefault()
+
   document.querySelector('h4').innerHTML = 'EDIT NOTE'
   document.getElementById('title').value = noteToEdit.title
   document.getElementById('content').value = noteToEdit.content
@@ -83,15 +93,15 @@ const editNote = noteToEdit => {
     : ''
   document.getElementById('reminder').value = noteToEdit.reminder
   document.getElementById('items').value = Array.isArray(noteToEdit.items)
-    ? noteToEdit.items.map(item => item.text.replace('❌: ', '').replace('✔', '')).join(', ')
+    ? noteToEdit.items.map(item => item.text.replace('❌: ', '').replace('✔: ', '')).join(', ')
     : ''
   document.querySelector('.notekeeper__new').innerHTML = 'EDIT'
 
-  newNoteButton.removeEventListener('click', addNote)
-  newNoteButton.addEventListener('click', () => saveEditedNote(noteToEdit))
+  form.addEventListener('submit', e => saveEditedNote(e, noteToEdit))
 }
 
-const saveEditedNote = originalNote => {
+const saveEditedNote = (e, originalNote) => {
+  e.preventDefault()
   const formValues = getFormValues()
 
   const updatedNote = {
@@ -107,8 +117,7 @@ const saveEditedNote = originalNote => {
 
   if (index !== -1) {
     notes[index] = updatedNote
-
-    saveNotes(notes)
+    saveNotes(notes.filter(note => note.title !== ''))
     loadNotes()
     resetForm()
   }
@@ -125,12 +134,13 @@ const resetForm = () => {
   document.getElementById('items').value = ''
   document.querySelector('.notekeeper__new').innerHTML = 'ADD A NOTE'
 
-  newNoteButton.removeEventListener('click', saveEditedNote)
-  newNoteButton.removeEventListener('click', addNote)
-  newNoteButton.addEventListener('click', e => addNote(e))
+  form.removeEventListener('submit', e => saveEditedNote(e, noteToEdit))
+  form.removeEventListener('submit', e => addNote(e))
+  form.addEventListener('submit', e => addNote(e))
 }
 
-const deleteNote = note => {
+const deleteNote = (e, note) => {
+  e.preventDefault()
   const notes = getNotes()
   const updatedNotes = notes.filter(existingNote => existingNote.id !== note.id)
 
@@ -155,12 +165,6 @@ const loadNotes = () => {
     const noteElement = createNoteElement(note, index)
 
     notesContainer.appendChild(noteElement)
-
-    const editButton = noteElement.querySelector('.edit-note')
-    const deleteButton = noteElement.querySelector('.delete-note')
-
-    editButton.addEventListener('click', () => editNote(note))
-    deleteButton.addEventListener('click', () => deleteNote(note))
   })
 }
 
@@ -181,12 +185,14 @@ const addNote = e => {
     items: parseItems(formValues.items),
   }
 
-  const notes = getNotes()
-  notes.push(note)
-  saveNotes(notes)
-  loadNotes()
+  if (note.title !== '') {
+    const notes = getNotes()
+    notes.push(note)
 
-  resetForm()
+    saveNotes(notes)
+    loadNotes()
+    resetForm()
+  }
 }
 
 const saveNotes = notes => localStorage.setItem('notes', JSON.stringify(notes))
