@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100vh;
+  width: 100%;
+}
+
+body {
+  background: linear-gradient(to bottom right, #7ed56f, #28b485);
+  width: 100%;
+  height: 100%;
+}
+
+#myCanvas {
+  width: 100%;
+  height: 94%;
+}
+
+#buttons {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#buttons__start,
+#buttons__reset {
+  width: 10rem;
+  height: 4rem;
+  margin: 2rem;
+  font-weight: bold;
+  border-radius: 10%;
+}
