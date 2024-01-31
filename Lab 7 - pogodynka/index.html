@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pogodynka</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <form id="search__bar" class="flex-column">
+        <label for="location">Location</label>
+        <div>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Select location"
+            required
+            minlength="1"
+            maxlength="58"
+            list="city-suggestions"
+            autocomplete="off" />
+          <datalist id="city-suggestions"></datalist>
+          <button id="submit__button">Check</button>
+        </div>
+      </form>
+      <main id="content__bar">
+        <section class="weather__card" id="weather__card1"></section>
+        <section class="weather__card" id="weather__card2"></section>
+        <section class="weather__card" id="weather__card3"></section>
+        <section class="weather__card" id="weather__card4"></section>
+        <section class="weather__card" id="weather__card5"></section>
+        <section class="weather__card" id="weather__card6"></section>
+        <section class="weather__card" id="weather__card7"></section>
+        <section class="weather__card" id="weather__card8"></section>
+        <section class="weather__card" id="weather__card9"></section>
+        <section class="weather__card" id="weather__card10"></section>
+      </main>
+      <div style="width: 30vw">
+        <canvas id="temperatureChart"></canvas>
+      </div>
+    </div>
+    <script src="main.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+      integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+  </body>
+</html>
