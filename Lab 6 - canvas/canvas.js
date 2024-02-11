@@ -1,5 +1,4 @@
 const ballCount = Math.ceil(Math.random() * 20)
-const ballRadius = 8
 const minDistance = 25
 const canvas = document.getElementById('myCanvas')
 const ctx = canvas.getContext('2d')
@@ -16,9 +15,9 @@ const resetCanvas = () => {
   cancelAnimationFrame(animationFrame)
 }
 
-const drawBall = (x, y) => {
+const drawBall = (x, y, size) => {
   ctx.beginPath()
-  ctx.arc(x, y, ballRadius, 0, angleToRadians(360))
+  ctx.arc(x, y, size, 0, angleToRadians(360))
   ctx.strokeStyle = 'black'
   ctx.lineWidth = 2
   ctx.stroke()
@@ -38,11 +37,13 @@ const generateBalls = () => {
   balls.length = 0
 
   for (let i = 0; i < ballCount; i++) {
+    const randomSize = Math.ceil(Math.random() * 10) + 5
     balls.push({
-      x: Math.random() * (canvas.width - 2 * ballRadius) + ballRadius,
-      y: Math.random() * (canvas.height - 2 * ballRadius) + ballRadius,
+      x: Math.random() * (canvas.width - 2 * randomSize) + randomSize,
+      y: Math.random() * (canvas.height - 2 * randomSize) + randomSize,
       dx: Math.random() - 0.5 * 2, // random speed in x direction
       dy: Math.random() - 0.5 * 2, // random speed in y direction
+      size: randomSize,
     })
   }
 
@@ -58,13 +59,18 @@ const drawCanvas = () => {
     currentBall.x += currentBall.dx // movement in x direction
     currentBall.y += currentBall.dy // movement in y direction
 
-    if (currentBall.x - ballRadius < 0 || currentBall.x + ballRadius > canvas.width)
+    if (currentBall.x - currentBall.size < 0 || currentBall.x + currentBall.size > canvas.width)
       currentBall.dx = -currentBall.dx // if collides with horizontal walls, bounce off the wall
 
-    if (currentBall.y - ballRadius < 0 || currentBall.y + ballRadius > canvas.height)
+    if (currentBall.y - currentBall.size < 0 || currentBall.y + currentBall.size > canvas.height)
       currentBall.dy = -currentBall.dy // if collides with vertical walls, bounce off the wall
 
-    drawBall(currentBall.x, currentBall.y)
+    if (currentBall.size < 1) {
+      balls.splice(i, 1)
+      continue
+    }
+
+    drawBall(currentBall.x, currentBall.y, currentBall.size)
 
     for (let j = i + 1; j < balls.length; j++) {
       const siblingBall = balls[j]
